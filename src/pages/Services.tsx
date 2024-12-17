@@ -1,4 +1,3 @@
-import React from 'react';
 import { Copyright, Bookmark, FileText, ShieldCheck } from 'lucide-react';
 
 const services = [

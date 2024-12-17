@@ -3,10 +3,10 @@ import { NavigationItem } from '../types';
 
 const navigation: NavigationItem[] = [
   { title: 'Home', href: '/' },
-  { title: 'Register IPR', href: './register' },
-  { title: 'Track Status', href: './track' },
-  { title: 'Resources', href: './resources' },
-  { title: 'Contact', href: './contact' },
+  { title: 'Register IPR', href: '/register' },
+  { title: 'Track Status', href: '/track' },
+  { title: 'Resources', href: '/resources' },
+  { title: 'Contact', href: '/contact' },
 ];
 
 export default function Navigation() {

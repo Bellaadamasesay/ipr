@@ -1,4 +1,3 @@
-import React from 'react';
 import { BookOpen, FileText, HelpCircle, Video } from 'lucide-react';
 
 const resources = [

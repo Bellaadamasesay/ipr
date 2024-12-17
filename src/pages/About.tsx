@@ -1,4 +1,3 @@
-import React from 'react';
 import { Shield, Users, Building2, Scale } from 'lucide-react';
 
 const values = [
