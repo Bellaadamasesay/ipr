@@ -20,7 +20,7 @@ export default function Navigation() {
           <div className="flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-gray-600 focus:outline-none"
+              className="text-white hover:text-black focus:outline-none"
             >
               {isOpen ? (
                 // Close Icon
@@ -66,7 +66,7 @@ export default function Navigation() {
               <a
                 key={item.title}
                 href={item.href}
-                className="text-white text-base font-medium hover:text-gray-600"
+                className="text-white text-base font-medium hover:text-black"
               >
                 {item.title}
               </a>
@@ -82,7 +82,7 @@ export default function Navigation() {
             <a
               key={item.title}
               href={item.href}
-              className="block text-white text-base font-medium hover:text-gray-600 ml-2"
+              className="block text-white text-base font-medium hover:text-black ml-2"
             >
               {item.title}
             </a>
