@@ -1,7 +1,13 @@
-import React from 'react';
+// import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import {handleSignUp} from '../../services/auth'
 export default function SignUp() {
+  
+// useEffect(() => {
+
+// }, []); 
+
+
   return (
     <div className="bg-white py-12 sm:py-32">
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
@@ -61,11 +67,8 @@ export default function SignUp() {
               />
             </div>
             <div>
-              <button
-                type="submit"
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
-                Sign up
+              <button onClick={() => handleSignUp()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Sign Up
               </button>
             </div>
             <div className="text-center mt-6 font-medium text-gray-600 hover:text-gray-500">
