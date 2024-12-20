@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { NavigationItem } from '../types';
+import { Link } from 'react-router-dom';
 
 const navigation: NavigationItem[] = [
   { title: 'Home', href: '/' },
@@ -63,14 +64,20 @@ export default function Navigation() {
           {/* Navigation Links for Large Screens */}
           <div className="hidden md:flex space-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.title}
-                href={item.href}
+                to={item.href}
                 className="text-white text-base font-medium hover:text-black"
               >
                 {item.title}
-              </a>
+              </Link>
             ))}
+          </div>
+
+          <div className="">
+            <Link to="">
+              <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Login/Sign Up</button>
+            </Link>
           </div>
         </div>
       </div>
