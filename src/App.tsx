@@ -1,12 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Contact from './pages/Contact';
-import Register from './pages/Register';
-import TrackStatus from './pages/TrackStatus';
-import Resources from './pages/Resources';
+import {Home, Services, Contact, TrackStatus, Resources, About, Register} from './pages'
+import {Login, SignUp} from './pages/auth';
 
 export default function App() {
   return (
@@ -19,6 +14,11 @@ export default function App() {
         <Route path="register" element={<Register />} />
         <Route path="track" element={<TrackStatus />} />
         <Route path="resources" element={<Resources />} />
+      </Route>
+      <Route path="/auth" element={<Layout />}>
+        <Route index element={<Login />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignUp />} />
       </Route>
     </Routes>
   );
