@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Login() {
   return (
@@ -40,6 +41,12 @@ export default function Login() {
               >
                 Sign in
               </button>
+            </div>
+            <div className="text-center mt-6 font-medium text-gray-600 hover:text-gray-500">
+              <span className="">Don't have an account? </span>
+              <Link to="/auth/signup" className="text-indigo-600 hover:text-indigo-500">
+                Sign Up
+              </Link>
             </div>
           </form>
         </div>

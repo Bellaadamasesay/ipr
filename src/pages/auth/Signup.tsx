@@ -1,12 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function SignUp() {
   return (
-    <div className="bg-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="bg-white py-12 sm:py-32">
+      <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">Sign Up</h2>
           <form className="mt-8 space-y-6">
+            <div>
+              <label htmlFor="fullname" className="block text-sm font-medium text-gray-700">
+                Fullname
+              </label>
+              <input
+                id="fullname"
+                name="fullname"
+                type="text"
+                autoComplete="fullname"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email address
@@ -16,6 +30,19 @@ export default function SignUp() {
                 name="email"
                 type="email"
                 autoComplete="email"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                Phone Number
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                autoComplete="phone"
                 required
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
@@ -40,6 +67,12 @@ export default function SignUp() {
               >
                 Sign up
               </button>
+            </div>
+            <div className="text-center mt-6 font-medium text-gray-600 hover:text-gray-500">
+              <span className="">Already have an account? </span>
+              <Link to="/auth/login" className="text-indigo-600 hover:text-indigo-500">
+                Login
+              </Link>
             </div>
           </form>
         </div>
