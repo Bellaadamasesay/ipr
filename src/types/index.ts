@@ -4,6 +4,12 @@ export type NavigationItem = {
   description?: string;
 };
 
-export type IPRType = 'patent' | 'trademark' | 'copyright' | 'trade-secret';
 
 export type RegistrationStatus = 'pending' | 'reviewing' | 'approved' | 'rejected';
+
+export type IPRType = 'patent' | 'trademark' | 'copyright' | 'trade-secret';
+
+export interface User {
+  id: string;
+  email: string;
+}

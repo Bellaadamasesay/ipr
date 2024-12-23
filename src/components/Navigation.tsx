@@ -92,14 +92,14 @@ export default function Navigation() {
           <div className="">
             {isLoggedIn ? (
               <>
-              <Link to="/admin" className="text-white text-base font-medium hover:text-black">
+              <Link to="/admin" className="text-white text-base font-medium hover:text-black mx-4">
                 Admin
               </Link>
               <Link to="/profile">
                 <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Profile</button>
               </Link>
               <Link to="#" onClick={() => handleSignOut()}>
-                <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Logout</button>
+                <button className="px-8 py-4 bg-transparent hover:text-gray-200 border border-1 border-white text-white rounded-full ml-8 font-bold">Logout</button>
               </Link>
               </>
             ) : (

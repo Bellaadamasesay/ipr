@@ -1,17 +1,22 @@
+export type IPRType = 'patent' | 'trademark' | 'copyright';
 
-import { supabase } from '../lib/supabase'
-// import {toast} from 'react-hot-toast'
+export const registerIPR = async (
+  propertyname: string,
+  description: string,
+  ownerId: string,
+  iprType: IPRType
+): Promise<{ success: boolean; error?: string }> => {
+  try {
+    // Simulate API call to register IPR
+    await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate delay
 
-export const registerIPR = async (propertyName: string, description: string, ownerId: number) => {
- const { data, error } = await supabase
-   .from('IntellectualProperties')
-   .insert([
-     { PropertyName: propertyName, Description: description, OwnerID: ownerId }
-   ]);
-  if (error) {
-   console.error('Error submitting IPR registration:', error);
-   return { success: false, error };
- }
-  console.log('IPR registration submitted successfully:', data);
- return { success: true, data };
+    // Log the registration details
+    console.log(`Registered IPR:`, { propertyname, description, ownerId, iprType });
+
+    return { success: true };
+  } catch (error) {
+    console.error("Error registering IPR:", error);
+    return { success: false, error: "Failed to register IPR" };
+  }
 };
+

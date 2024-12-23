@@ -52,4 +52,3 @@ export const handleSignOut = async () => {
     throw error;
   }
 };
-

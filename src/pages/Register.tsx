@@ -1,19 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { IPRType } from '../types';
 import { registerIPR } from '../services/registration'; 
 import toast from 'react-hot-toast';
+import { checkUserSession } from '../services/auth';
 
 export default function Register() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [iprType, setIprType] = useState<IPRType>('patent');
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
-  const [title, setTitle] = useState('');
+  const [propertyname, setPropertyname] = useState('');
   const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    const verifyUser = async () => {
+      try {
+        await checkUserSession();
+      } catch (error) {
+        toast.error(`You are not logged in. Redirecting to login... ${error}`);
+        navigate('/auth/login');
+      }
+    };
+     verifyUser();
+  }, []);
 
   const handleSubmit = async () => {
     const ownerId = 1; // Replace with actual user ID from your authentication system
-    const result = await registerIPR(title, description, ownerId);
+    const result = await registerIPR(propertyname, description, ownerId, iprType);
 
     if (result.success) {
       toast.success(result.success ? 'Registered Successfully' : 'Error');
@@ -116,8 +131,8 @@ export default function Register() {
                       <input
                         type="text"
                         id="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        value={propertyname}
+                        onChange={(e) => setPropertyname(e.target.value)}
                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                       />
                     </div>
