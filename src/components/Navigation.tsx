@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavigationItem } from '../types';
 import { Link } from 'react-router-dom';
+import { checkUserSession } from '../services/auth';
 
 const navigation: NavigationItem[] = [
   { title: 'Home', href: '/' },
@@ -12,6 +13,20 @@ const navigation: NavigationItem[] = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const user = await checkUserSession();
+        setIsLoggedIn(!!user);
+      } catch (error) {
+        console.error('Error checking user session:', error);
+      }
+    };
+
+    checkSession();
+  }, []);
 
   return (
     <nav>
@@ -41,7 +56,7 @@ export default function Navigation() {
                   />
                 </svg>
               ) : (
-                // Menu Iconses
+                // Menu Icons
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
@@ -75,9 +90,15 @@ export default function Navigation() {
           </div>
 
           <div className="">
-            <Link to="">
-              <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Login/Sign Up</button>
-            </Link>
+            {isLoggedIn ? (
+              <Link to="/profile">
+                <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Profile</button>
+              </Link>
+            ) : (
+              <Link to="/auth/login">
+                <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Login/Sign Up</button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

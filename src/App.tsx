@@ -2,9 +2,11 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import {Home, Services, Contact, TrackStatus, Resources, About, Register} from './pages'
 import {Login, SignUp} from './pages/auth';
+import { ToastProvider } from './components/ToastProvider';
 
 export default function App() {
   return (
+    <ToastProvider >
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
@@ -21,6 +23,7 @@ export default function App() {
         <Route path="signup" element={<SignUp />} />
       </Route>
     </Routes>
+    </ToastProvider>
   );
 }
 

@@ -1,9 +1,29 @@
 import { useState } from 'react';
 import { IPRType } from '../types';
+import { createClient } from '@supabase/supabase-js';
+import { registerIPR } from '../services/registration'; // Import the registration service
+
+// Initialize Supabase client
+const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
 
 export default function Register() {
   const [step, setStep] = useState(1);
   const [iprType, setIprType] = useState<IPRType>('patent');
+  const [fullname, setFullname] = useState('');
+  const [email, setEmail] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  const handleSubmit = async () => {
+    const ownerId = 1; // Replace with actual user ID from your authentication system
+    const result = await registerIPR(title, description, ownerId);
+
+    if (result.success) {
+      // Optionally reset the form or navigate to a different page
+    } else {
+      // Handle error (e.g., show a message to the user)
+    }
+  };
 
   return (
     <div className="bg-white py-24 sm:py-32">
@@ -49,6 +69,8 @@ export default function Register() {
                         Full Name
                       </label>
                       <input
+                        value={fullname}
+                        onChange={(e) => setFullname(e.target.value)}
                         type="text"
                         id="name"
                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
@@ -59,6 +81,8 @@ export default function Register() {
                         Email
                       </label>
                       <input
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         type="email"
                         id="email"
                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
@@ -93,6 +117,8 @@ export default function Register() {
                       <input
                         type="text"
                         id="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                       />
                     </div>
@@ -103,6 +129,8 @@ export default function Register() {
                       <textarea
                         id="description"
                         rows={4}
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
                       />
                     </div>
@@ -114,7 +142,8 @@ export default function Register() {
                         Back
                       </button>
                       <button
-                        type="submit"
+                        type="button"
+                        onClick={handleSubmit}
                         className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
                       >
                         Submit Registration
