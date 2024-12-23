@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { NavigationItem } from '../types';
 import { Link } from 'react-router-dom';
-import { checkUserSession } from '../services/auth';
+import { checkUserSession, handleSignOut } from '../services/auth';
 
 const navigation: NavigationItem[] = [
   { title: 'Home', href: '/' },
@@ -91,9 +91,17 @@ export default function Navigation() {
 
           <div className="">
             {isLoggedIn ? (
+              <>
+              <Link to="/admin" className="text-white text-base font-medium hover:text-black">
+                Admin
+              </Link>
               <Link to="/profile">
                 <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Profile</button>
               </Link>
+              <Link to="#" onClick={() => handleSignOut()}>
+                <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Logout</button>
+              </Link>
+              </>
             ) : (
               <Link to="/auth/login">
                 <button className="px-8 py-4 bg-white hover:text-indigo-400 text-indigo-500 rounded-full ml-8 font-bold">Login/Sign Up</button>
