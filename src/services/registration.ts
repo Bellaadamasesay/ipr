@@ -1,6 +1,6 @@
 
 import { supabase } from '../lib/supabase'
-import {toast} from 'react-hot-toast'
+// import {toast} from 'react-hot-toast'
 
 export const registerIPR = async (propertyName: string, description: string, ownerId: number) => {
  const { data, error } = await supabase
