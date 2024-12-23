@@ -1,27 +1,25 @@
-import { supabase } from '../lib/supabase'
-import {toast} from 'react-hot-toast'
+import { supabase } from '../lib/supabase';
+import { toast } from 'react-hot-toast';
 
 export const handleSignUp = async (email: string, password: string, fullname: string, phone: string) => {
-  console.log(`Testing Sign Up ---  Email: ${email} --- Password: ${password}}`);
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
-        displa: fullname,
+        full_name: fullname,
         phone: phone,
       },
     },
-  })
+  });
 
   if (error) {
-    toast.error(`Error: ${error.message} --- Email: ${email} --- Password: ${password}`)
-    throw error
+    toast.error(`Error: ${error.message}`);
+    throw error;
   }
 
-  return data
-}
-
+  return data;
+};
 
 export const handleSignIn = async (email: string, password: string) => {
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -29,43 +27,29 @@ export const handleSignIn = async (email: string, password: string) => {
     password,
   });
 
-  if (error) throw error;
-
-  // Fetch the user ID from 'auth.users'
-  const { data: userData, error: userError } = await supabase
-    .from('auth.users') // Use 'auth.users' instead of 'users'
-    .select('id') // 'id' is the UID field in the table
-    .eq('email', email)
-    .single();
-
-  if (userError) {
-    console.error('Error fetching user UID:', userError);
-    throw new Error('Failed to fetch user UID.');
+  if (error) {
+    toast.error(`Error: ${error.message}`);
+    throw error;
   }
 
-  if (!userData) {
-    throw new Error('No user found with the provided email.');
-  }
-
-  // Log or use the UID
-  console.log('User UID:', userData.id);
-
-  return userData; // Optionally return user data if needed
+  return data;
 };
 
 export const checkUserSession = async () => {
   const { data: { user }, error } = await supabase.auth.getUser();
-   if (error) {
-    throw error; // Handle error if needed
+  
+  if (error) {
+    throw error;
   }
-   return user; // Returns the user object if logged in, or null if not
-}
+
+  return user;
+};
 
 export const handleSignOut = async () => {
-  const { error } = await supabase.auth.signOut()
+  const { error } = await supabase.auth.signOut();
 
   if (error) {
-    throw error
+    throw error;
   }
-}
+};
 

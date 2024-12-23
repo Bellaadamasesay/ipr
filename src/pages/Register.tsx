@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { IPRType } from '../types';
-import { createClient } from '@supabase/supabase-js';
-import { registerIPR } from '../services/registration'; // Import the registration service
-
-// Initialize Supabase client
-const supabase = createClient('YOUR_SUPABASE_URL', 'YOUR_SUPABASE_ANON_KEY');
+import { registerIPR } from '../services/registration'; 
+import toast from 'react-hot-toast';
 
 export default function Register() {
   const [step, setStep] = useState(1);
@@ -19,8 +16,10 @@ export default function Register() {
     const result = await registerIPR(title, description, ownerId);
 
     if (result.success) {
+      toast.success(result.success ? 'Registered Successfully' : 'Error');
       // Optionally reset the form or navigate to a different page
     } else {
+      toast.success(`Error: ${result.error}`);
       // Handle error (e.g., show a message to the user)
     }
   };

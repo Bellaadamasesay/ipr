@@ -1,41 +1,38 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { handleSignIn } from '../../services/auth'
 import {toast} from 'react-hot-toast'
 
 export default function Login() {
+  // const [error, setError] = useState(null)
   const location = useLocation();
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
-  // const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (location.state && location.state.message) {
       toast.success(location.state.message);
     }
   }, [location.state]);
 
   const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
+    e.preventDefault();
     try {
       await handleSignIn(email, password);
-      console.log("Sign in successful");
       toast.success('Login successful!');
+      navigate('/profile');
     } catch (err) {
       console.error("Sign in error:", err);
-      toast.error(`Error: ${err instanceof Error ? err.message : 'An error occurred during sign in.'}`);
     }
-  }
-
+  };
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">Login</h2>
           {/* <Toaster /> */}
-          {error && <p className="text-red-500 mt-2">{error}</p>}
+          {/* {error && <p className="text-red-500 mt-2">{error}</p>} */}
           <form onSubmit={onSubmit} className="mt-8 space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
