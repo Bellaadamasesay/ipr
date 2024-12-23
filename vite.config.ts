@@ -1,24 +1,10 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import eslint from 'vite-plugin-eslint'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    eslint({
-      include: ['src/**/*.ts', 'src/**/*.tsx'],
-      exclude: ['node_modules/**', 'dist/**'],
-      failOnError: false,
-    }),
-  ],
-  esbuild: {
-    jsxInject: `import React from 'react'`,
+  plugins: [react()],
+  optimizeDeps: {
+    exclude: ['lucide-react'],
   },
-  build: {
-    sourcemap: true,
-  },
-  server: {
-    open: true,
-  },
-})
-
+});
