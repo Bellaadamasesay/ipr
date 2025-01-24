@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { checkUserSession, handleSignOut } from '../services/auth';
 
 const navigation: NavigationItem[] = [
-  { title: 'Home', href: '/' },
+  // { title: 'Home', href: '/' },
   { title: 'Register IPR', href: '/register' },
   { title: 'Track Status', href: '/track' },
   { title: 'Resources', href: '/resources' },
